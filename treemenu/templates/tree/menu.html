@@ -1,0 +1,42 @@
+{% load mptt_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scheme Tree</title>
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+<body>
+    <ul id="myUL">
+        {% recursetree schemes %}
+        <li>
+            {% if node.is_leaf_node %}
+                <span class="leaf">{{ node.name }}</span>
+            {% else %}
+                <span class="caret parent">{{ node.name }}</span>
+                <ul class="nested">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+        {% endrecursetree %}
+    </ul>  
+    <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script>
+         const csrftoken = Cookies.get('csrftoken');
+   document.addEventListener('DOMContentLoaded', (event) => {
+        var togglers = document.getElementsByClassName("caret parent");
+        var i;
+
+        for (i = 0; i < togglers.length; i++) {
+            togglers[i].addEventListener("click", function () {
+                this.parentElement.querySelector(".nested").classList.toggle("active");
+                this.classList.toggle("caret-down");
+            });
+        }
+   })
+    </script>
+</body>
+</html>
