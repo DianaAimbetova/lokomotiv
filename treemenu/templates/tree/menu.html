@@ -5,24 +5,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scheme Tree</title>
+    <title>Дерево для схем</title>
     <link href="{% static "css/base.css" %}" rel="stylesheet">
 </head>
 <body>
+    {% if schemes %}
     <ul id="myUL">
         {% recursetree schemes %}
         <li>
             {% if node.is_leaf_node %}
-                <span class="leaf">{{ node.name }}</span>
+                <span class="leaf"> {{ node.name }}  </span>
             {% else %}
-                <span class="caret parent">{{ node.name }}</span>
+                <span class="caret parent"> {{ node.name }} </span>
                 <ul class="nested">
-                    {{ children }}
+                     {{ children }} 
                 </ul>
             {% endif %}
         </li>
         {% endrecursetree %}
     </ul>  
+    {% else %}
+    <h2>Нет схем для отображения</h2>
+    {% endif %}
     <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
     <script>
          const csrftoken = Cookies.get('csrftoken');

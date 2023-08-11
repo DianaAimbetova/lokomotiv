@@ -1,22 +1,21 @@
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Загрузка файла</title>
+</head>
+<body>
+  {% block content %}
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
- 
-    <div class="row">
-        <div class="col-md-6 col-xs-12">
-          <div class="x_panel">
-            <div class="x_title">
-              <h2>Загрузите схему в базу данных</h2>           
-              <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-              <div class="col-md-8 col-sm-12 col-xs-12 form-group">      
-              </div>
-                    <input type="file" name="myfile" class="form-control">
-                             <button type="submit" class="btn btn-success" >Загрузка</button> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+    <h2>Загрузите схему в базу данных</h2>           
+    <input type="file" name="myfile" class="form-control"  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+    <button type="submit" class="btn btn-success" >Загрузка</button> 
+                
   </form>   
 {% endblock %}
+</body>
+</html>
+ 

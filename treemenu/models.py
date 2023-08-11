@@ -12,3 +12,7 @@ class Scheme(MPTTModel):
     
     class MPTTMeta:
         order_insertion_by = ['name']
+        
+    class Meta:
+        verbose_name = 'Схема'
+        verbose_name_plural = 'Схемы'
